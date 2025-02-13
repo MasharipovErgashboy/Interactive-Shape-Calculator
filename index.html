@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Frontend</title>
+    <style>
+      body {
+        font-family: "Roboto", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #eef2f7;
+        color: #333;
+      }
+      .container {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        color: #222;
+        margin-bottom: 30px;
+        font-size: 2rem;
+      }
+      .section {
+        margin-bottom: 40px;
+      }
+      .section h2 {
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+        color: #444;
+      }
+      .inputs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .inputs input,
+      .inputs select {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        flex: 1;
+        min-width: 150px;
+        font-size: 1rem;
+      }
+      .inputs button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #4caf50;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 1rem;
+      }
+      .inputs button:hover {
+        background-color: #45a049;
+      }
+      .output {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+      @media (max-width: 600px) {
+        .inputs {
+          flex-direction: column;
+        }
+        .inputs input,
+        .inputs select,
+        .inputs button {
+          flex: none;
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a
+      href="file:///C:/Users/user/OneDrive/Ishchi%20stol/Cowork/IT/Virtual%20filio/html/index.html#portfolio"
+      style="position: absolute; top: 10px; left: 10px"
+    >
+      <img src="left-arrow.png" alt="Back" style="width: 50px; height: 50px" />
+    </a>
+    <div class="container">
+      <h1>Interactive Shapes</h1>
+
+      <!-- Shape Section -->
+      <div class="section" id="shapes-section">
+        <h2>Calculate Shape Properties</h2>
+        <div class="inputs">
+          <select id="shape-selector">
+            <option value="circle">Circle</option>
+            <option value="rectangle">Rectangle</option>
+            <option value="square">Square</option>
+          </select>
+          <input type="number" id="radius" placeholder="Radius (for Circle)" />
+          <input type="number" id="width" placeholder="Width (for Rectangle)" />
+          <input
+            type="number"
+            id="height"
+            placeholder="Height (for Rectangle)"
+          />
+          <input type="number" id="side" placeholder="Side (for Square)" />
+          <button onclick="calculateShape()">Calculate</button>
+        </div>
+        <div class="output" id="shape-output"></div>
+      </div>
+    </div>
+
+    <script>
+      // Shape Calculations
+      function calculateShape() {
+        const shape = document.getElementById("shape-selector").value;
+        const radius = parseFloat(document.getElementById("radius").value);
+        const width = parseFloat(document.getElementById("width").value);
+        const height = parseFloat(document.getElementById("height").value);
+        const side = parseFloat(document.getElementById("side").value);
+
+        let output = "";
+
+        if (shape === "circle") {
+          if (!isNaN(radius)) {
+            output = `Circle: Area = ${(Math.PI * Math.pow(radius, 2)).toFixed(
+              2
+            )}, Perimeter = ${(2 * Math.PI * radius).toFixed(2)}`;
+          } else {
+            output = "Please enter a valid radius.";
+          }
+        } else if (shape === "rectangle") {
+          if (!isNaN(width) && !isNaN(height)) {
+            output = `Rectangle: Area = ${(width * height).toFixed(
+              2
+            )}, Perimeter = ${(2 * (width + height)).toFixed(2)}`;
+          } else {
+            output = "Please enter valid width and height.";
+          }
+        } else if (shape === "square") {
+          if (!isNaN(side)) {
+            output = `Square: Area = ${(side * side).toFixed(
+              2
+            )}, Perimeter = ${(4 * side).toFixed(2)}`;
+          } else {
+            output = "Please enter a valid side.";
+          }
+        }
+
+        document.getElementById("shape-output").innerText = output;
+      }
+    </script>
+  </body>
+</html>
